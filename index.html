@@ -1,0 +1,88 @@
+<!--Retrieves the profile picture and followers after entering the github username-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Profile Card</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="searchbox">
+      <input id="username" placeholder="Enter your github username" />
+      <button id="submit">Check</button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="img-container">
+          <img id="image-tag" src="images.png" alt="profile-pic" />
+        </div>
+        <div class="country">Country : <span id="country-name"></span></div>
+      </div>
+      <div class="details">
+        <div class="det">
+          <span class="ans" id="name"> </span><span class="low">Name</span>
+        </div>
+        <div class="det">
+          <span class="ans" id="followers"></span>
+          <span class="low">Followers</span>
+        </div>
+        <div class="det">
+          <span class="ans repo-count"></span>
+          <span class="low">Public Repos</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const submitbutton = document.getElementById("submit");
+      let country_name = document.getElementById("country-name");
+      let pic = document.getElementById("image-tag");
+      let followers_count = document.getElementById("followers");
+      let repo_count = document.getElementsByClassName("repo-count")[0];
+      const changeName = function (user) {
+        document.getElementById("name").innerHTML = user;
+      };
+      const userInput = document.getElementById("username");
+
+      submitbutton.addEventListener("click", function () {
+        console.log("pressed submit");
+        const user = userInput.value;
+        reqapi = `https://api.github.com/users/${user}`;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", reqapi);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 404) {
+              alert(
+                "Profile not found. Please check the username and try again."
+              );
+              return;
+            }
+
+            console.log("checked");
+            const data = JSON.parse(this.responseText);
+            const picurl = data.avatar_url;
+            pic.src = picurl;
+            pic.alt = `${user}'s Profile Picture`;
+            followers_count.innerHTML = data.followers;
+            repo_count.innerHTML = data.public_repos;
+            changeName(data.name);
+            if (data.location) {
+              country_name.innerHTML = data.location;
+            } else {
+              country_name.innerHTML = "Undefined";
+            }
+
+            if (!data.name) {
+              changeName(undefined);
+            }
+          }
+        };
+        xhr.send();
+      });
+    </script>
+  </body>
+</html>

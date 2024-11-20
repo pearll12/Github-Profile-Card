@@ -1,0 +1,96 @@
+body {
+  background-color: #21aeb9;
+  text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+}
+
+.searchbox {
+  margin: auto;
+  margin-top: 50px;
+  height: 30px;
+  background-color: beige;
+  width: 30%;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+button {
+  height: 100%;
+  width: auto;
+  border: none;
+  background-color: beige;
+  font-style: normal;
+}
+
+#username {
+  height: 90%;
+  background-color: beige;
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+}
+
+.card {
+  background-color: white;
+  height: 300px;
+  width: 25%;
+  display: block;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  height: 50%;
+  background-color: #40ccd3;
+  margin: 0;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+.country {
+  margin-top: 40px;
+}
+
+.img-container {
+  margin: 0;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  background-color: white;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: -70px;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  margin-top: 25%;
+  border: none;
+}
+
+.ans {
+  display: block;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.low {
+  font-size: small;
+  font-weight: lighter;
+  font-style: italic;
+}
